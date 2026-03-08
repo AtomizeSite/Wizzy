@@ -45,17 +45,17 @@ max-width:420px;
 position:relative;
 }
 
-/* Naruto floating animation */
+/* Naruto floating */
 
 .title-chibi{
 width:90px;
-margin-bottom:10px;
+margin-bottom:12px;
 animation:floatNaruto 4s ease-in-out infinite;
 }
 
 @keyframes floatNaruto{
 0%{transform:translateY(0px)}
-50%{transform:translateY(-12px)}
+50%{transform:translateY(-10px)}
 100%{transform:translateY(0px)}
 }
 
@@ -101,19 +101,22 @@ object-fit:cover;
 font-size:20px;
 }
 
-/* Ayanokoji beside discord */
+/* Discord section */
 
 .discord-wrapper{
 position:relative;
 }
 
+/* Ayanokoji LEFT of the link */
+
 .ayanokoji{
 position:absolute;
-left:-90px;
-top:-10px;
+left:-80px;
+top:50%;
+transform:translateY(-50%);
 width:65px;
 }
-  
+
 /* music button */
 
 .music-control{
@@ -145,7 +148,7 @@ z-index:0;
 
 <div class="container">
 
-<!-- Naruto floating -->
+<!-- Naruto above title -->
 <img class="title-chibi" src="naruto.png">
 
 <h1>Wizzy</h1>

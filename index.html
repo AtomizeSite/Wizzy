@@ -44,23 +44,24 @@ width:90%;
 max-width:420px;
 }
 
-.title-row{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-margin-bottom:20px;
+/* chibi above title */
+
+.title-chibi{
+width:120px;
+margin-bottom:10px;
 }
 
-.title-row img{
-width:55px;
-height:55px;
-border-radius:12px;
-object-fit:cover;
+/* chibi above link */
+
+.link-chibi{
+width:100px;
+margin:10px auto -5px auto;
+display:block;
 }
 
 h1{
 font-size:34px;
+margin-bottom:15px;
 text-shadow:0 0 15px rgba(255,255,255,0.6);
 }
 
@@ -100,15 +101,6 @@ object-fit:cover;
 font-size:20px;
 }
 
-/* ayanokoji image */
-
-.ayanokoji{
-width:36px;
-height:36px;
-border-radius:8px;
-object-fit:cover;
-}
-
 /* music button */
 
 .music-control{
@@ -140,13 +132,10 @@ z-index:0;
 
 <div class="container">
 
-<div class="title-row">
-
-<img src="https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg">
+<!-- Naruto chibi ABOVE title -->
+<img class="title-chibi" src="naruto.png">
 
 <h1>Wizzy</h1>
-
-</div>
 
 <a class="link" href="https://www.tiktok.com/@lordwizzy50" target="_blank">
 <div class="left">
@@ -164,9 +153,11 @@ z-index:0;
 </div>
 </a>
 
+<!-- Ayanokoji chibi ABOVE link -->
+<img class="link-chibi" src="ayanokoji.png">
+
 <a class="link" href="https://discord.gg/YxefDrGbYZ" target="_blank">
 <div class="left">
-<img class="ayanokoji" src="https://static.wikia.nocookie.net/p__/images/2/2a/Kiyotaka_Ayanokoji_anime_design.png">
 <i class="fa-brands fa-discord"></i>
 <span>Discord Server</span>
 </div>
@@ -179,7 +170,7 @@ z-index:0;
 </div>
 
 <audio id="bgMusic" loop>
-<source src="her - instrumental_spotdown.org.mp3" type="audio/mpeg">
+<source src="background.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -222,9 +213,11 @@ size:1+Math.random()*3
 }
 
 function animate(){
+
 ctx.clearRect(0,0,canvas.width,canvas.height)
 
 particles.forEach(p=>{
+
 p.y-=p.speed
 
 if(p.y<0){
@@ -236,9 +229,11 @@ ctx.beginPath()
 ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
 ctx.fillStyle="rgba(255,255,255,0.7)"
 ctx.fill()
+
 })
 
 requestAnimationFrame(animate)
+
 }
 
 animate()

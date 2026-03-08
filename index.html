@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wizzy Links</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+
+/* Naruto themed gradient */
+background:linear-gradient(270deg,#ff7a00,#ffb347,#ff4500,#ff8c00);
+background-size:600% 600%;
+animation:chakraGradient 12s ease infinite;
+}
+
+@keyframes chakraGradient{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+.container{
+z-index:5;
+text-align:center;
+width:90%;
+max-width:420px;
+}
+
+h1{
+font-size:34px;
+margin-bottom:20px;
+text-shadow:0 0 15px rgba(255,255,255,0.6);
+}
+
+.link{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:14px 18px;
+margin:12px 0;
+border-radius:14px;
+background:rgba(0,0,0,0.35);
+text-decoration:none;
+color:white;
+transition:0.3s;
+backdrop-filter:blur(6px);
+}
+
+.link:hover{
+transform:scale(1.05);
+background:rgba(0,0,0,0.6);
+}
+
+.left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.left img{
+width:34px;
+height:34px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.left i{
+font-size:20px;
+}
+
+/* Music button */
+
+.music-control{
+position:fixed;
+bottom:20px;
+right:20px;
+background:rgba(0,0,0,0.5);
+padding:12px 14px;
+border-radius:12px;
+cursor:pointer;
+z-index:10;
+}
+
+/* particles */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:0;
+}
+
+/* chibi characters */
+
+.chibi{
+position:fixed;
+bottom:10px;
+width:80px;
+pointer-events:none;
+z-index:2;
+}
+
+#naruto{
+left:-100px;
+animation:narutoWalk 18s linear infinite;
+}
+
+#ayanokoji{
+right:-100px;
+animation:ayanokojiWalk 20s linear infinite;
+}
+
+@keyframes narutoWalk{
+0%{left:-120px}
+100%{left:110%}
+}
+
+@keyframes ayanokojiWalk{
+0%{right:-120px}
+100%{right:110%}
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- Chibi Naruto -->
+<img id="naruto" class="chibi" src="https://media.tenor.com/7d1U9MGaI1QAAAAi/naruto-run.gif">
+
+<!-- Chibi Ayanokoji -->
+<img id="ayanokoji" class="chibi" src="https://media.tenor.com/4h7s1fO9dV0AAAAi/anime-walk.gif">
+
+<div class="container">
+
+<h1>🍥 Wizzy</h1>
+
+<a class="link" href="https://www.tiktok.com/@lordwizzy50" target="_blank">
+<div class="left">
+<img src="https://unavatar.io/tiktok/lordwizzy50">
+<i class="fa-brands fa-tiktok"></i>
+<span>TikTok</span>
+</div>
+</a>
+
+<a class="link" href="https://www.tiktok.com/@lordwisdom42" target="_blank">
+<div class="left">
+<img src="https://unavatar.io/tiktok/lordwisdom42">
+<i class="fa-brands fa-tiktok"></i>
+<span>TikTok</span>
+</div>
+</a>
+
+<a class="link" href="https://discord.gg/YxefDrGbYZ" target="_blank">
+<div class="left">
+<i class="fa-brands fa-discord"></i>
+<span>Discord Server</span>
+</div>
+</a>
+
+</div>
+
+<div class="music-control" onclick="toggleMusic()">
+<i id="musicIcon" class="fa-solid fa-volume-xmark"></i>
+</div>
+
+<audio id="bgMusic" loop>
+<source src="background.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* music toggle */
+
+let music=document.getElementById("bgMusic")
+let icon=document.getElementById("musicIcon")
+let playing=false
+
+function toggleMusic(){
+if(!playing){
+music.play()
+icon.className="fa-solid fa-volume-high"
+playing=true
+}else{
+music.pause()
+icon.className="fa-solid fa-volume-xmark"
+playing=false
+}
+}
+
+/* chakra particles */
+
+const canvas=document.getElementById("particles")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let particles=[]
+
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+speed:0.3+Math.random()*0.6,
+size:1+Math.random()*3
+})
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+particles.forEach(p=>{
+p.y-=p.speed
+
+if(p.y<0){
+p.y=canvas.height
+p.x=Math.random()*canvas.width
+}
+
+ctx.beginPath()
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
+ctx.fillStyle="rgba(255,255,255,0.7)"
+ctx.fill()
+})
+
+requestAnimationFrame(animate)
+}
+
+animate()
+
+</script>
+
+</body>
+</html>

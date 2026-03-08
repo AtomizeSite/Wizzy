@@ -42,21 +42,21 @@ z-index:5;
 text-align:center;
 width:90%;
 max-width:420px;
+position:relative;
 }
 
-/* chibi above title */
+/* Naruto floating animation */
 
 .title-chibi{
 width:120px;
 margin-bottom:10px;
+animation:floatNaruto 4s ease-in-out infinite;
 }
 
-/* chibi above link */
-
-.link-chibi{
-width:100px;
-margin:10px auto -5px auto;
-display:block;
+@keyframes floatNaruto{
+0%{transform:translateY(0px)}
+50%{transform:translateY(-12px)}
+100%{transform:translateY(0px)}
 }
 
 h1{
@@ -101,6 +101,19 @@ object-fit:cover;
 font-size:20px;
 }
 
+/* Ayanokoji beside discord */
+
+.discord-wrapper{
+position:relative;
+}
+
+.ayanokoji{
+position:absolute;
+right:-90px;
+top:-10px;
+width:70px;
+}
+
 /* music button */
 
 .music-control{
@@ -132,7 +145,7 @@ z-index:0;
 
 <div class="container">
 
-<!-- Naruto chibi ABOVE title -->
+<!-- Naruto floating -->
 <img class="title-chibi" src="naruto.png">
 
 <h1>Wizzy</h1>
@@ -153,8 +166,9 @@ z-index:0;
 </div>
 </a>
 
-<!-- Ayanokoji chibi ABOVE link -->
-<img class="link-chibi" src="ayanokoji.png">
+<div class="discord-wrapper">
+
+<img class="ayanokoji" src="ayanokoji.png">
 
 <a class="link" href="https://discord.gg/YxefDrGbYZ" target="_blank">
 <div class="left">
@@ -165,12 +179,14 @@ z-index:0;
 
 </div>
 
+</div>
+
 <div class="music-control" onclick="toggleMusic()">
 <i id="musicIcon" class="fa-solid fa-volume-xmark"></i>
 </div>
 
 <audio id="bgMusic" loop>
-<source src="her - instrumental_spotdown.org.mp3" type="audio/mpeg">
+<source src="background.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -193,7 +209,7 @@ playing=false
 }
 }
 
-/* chakra particles */
+/* particles */
 
 const canvas=document.getElementById("particles")
 const ctx=canvas.getContext("2d")
